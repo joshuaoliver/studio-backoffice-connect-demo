@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {observer} from 'mobx-react';
-import {todos} from './store';
+import {threads} from './store';
 import FlipMove from 'react-flip-move';
 import CircularProgress from 'material-ui/CircularProgress';
 import Checkbox from 'material-ui/Checkbox';
 import TodoItem from './TodoItem';
 
-const Todos = observer(class Todos extends Component {
+const Threads = observer(class Threads extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -29,9 +29,9 @@ const Todos = observer(class Todos extends Component {
 				</div>
 			);
 		}
-		const {docs, query} = todos;
-		const children = docs.map((todo) => <TodoItem key={todo.id} todo={todo} />);
-		const {isLoading} = todos;
+		const {docs, query} = threads;
+		const children = docs.map((thread) => <TodoItem key={thread.id} thread={thread} />);
+		const {isLoading} = threads;
 		return (
 			<div style={styles.container}>
 				<div style={styles.header}>
@@ -51,11 +51,11 @@ const Todos = observer(class Todos extends Component {
 	}
 
 	onCheckShowOnlyUnfinished = () => {
-		if (todos.query) {
-			todos.query = undefined;
+		if (threads.query) {
+			threads.query = undefined;
 		}
 		else {
-			todos.query = todos.ref.where('finished', '==', false).limit(10);
+			threads.query = threads.ref.where('finished', '==', false).limit(10);
 		}
 	};
 
@@ -97,4 +97,4 @@ const styles = {
 	}
 };
 
-export default Todos;
+export default Threads;

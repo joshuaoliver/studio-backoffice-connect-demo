@@ -3,8 +3,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import ContentAddIcon from 'material-ui/svg-icons/content/add';
-import Todos from './Todos';
-import {todos} from './store';
+import Threads from './Threads';
+import {Threads} from './store';
 
 const styles = {
 	container: {
@@ -57,7 +57,7 @@ class App extends Component {
 							<h3 style={styles.h1}>Studio Backoffice Threads</h3>
 						</div>
 					</div>
-					<Todos />
+					<Threads />
 					<FloatingActionButton style={styles.add} onClick={this.onPressAdd}>
 						<ContentAddIcon />
 					</FloatingActionButton>
@@ -68,7 +68,7 @@ class App extends Component {
 
 	onPressAdd = async () => {
 		try {
-			await todos.add({
+			await threads.add({
 				finished: false,
 				text: ''
 			});

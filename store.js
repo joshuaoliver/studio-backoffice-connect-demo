@@ -17,8 +17,8 @@ firebase.initializeApp({
 
 initFirestorter({firebase: firebase});
 
-const todos = new Collection('todos');
+const threads = new Collection('threads');
 
 export {
-	todos
+	threads
 };

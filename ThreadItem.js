@@ -8,14 +8,14 @@ import FlatButton from 'material-ui/FlatButton';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import Paper from 'material-ui/Paper';
 
-class TodoItem extends Component {
+class ThreadItem extends Component {
 	static propTypes = {
-		todo: PropTypes.any
+		thread: PropTypes.any
 	};
 
 	render() {
-		const {todo} = this.props;
-		const {finished, text} = todo.data;
+		const {thread} = this.props;
+		const {finished, text} = thread.data;
 
 		return (
 			<Paper zDepth={1}>
@@ -25,7 +25,7 @@ class TodoItem extends Component {
 						onCheck={this.onPressCheck}
 						checked={finished} />
 					<TextField
-						id={todo.id}
+						id={thread.id}
 						style={styles.input}
 						underlineShow={false}
 						hintText={text ? undefined : 'What needs to be done?'}
@@ -43,11 +43,11 @@ class TodoItem extends Component {
 	}
 
 	onPressDelete = async () => {
-		const {todo} = this.props;
+		const {thread} = this.props;
 		if (this._deleting) return;
 		this._deleting = true;
 		try {
-			await todo.delete();
+			await thread.delete();
 			this._deleting = false;
 		}
 		catch (err) {
@@ -56,15 +56,15 @@ class TodoItem extends Component {
 	};
 
 	onPressCheck = async () => {
-		const {todo} = this.props;
-		await todo.update({
-			finished: !todo.data.finished
+		const {thread} = this.props;
+		await thread.update({
+			finished: !thread.data.finished
 		});
 	};
 
 	onTextChange = async (event, newValue) => {
-		const {todo} = this.props;
-		await todo.update({
+		const {thread} = this.props;
+		await thread.update({
 			text: newValue
 		});
 	};
@@ -92,4 +92,4 @@ const styles = {
 	}
 };
 
-export default observer(TodoItem);
+export default observer(ThreadItem);
